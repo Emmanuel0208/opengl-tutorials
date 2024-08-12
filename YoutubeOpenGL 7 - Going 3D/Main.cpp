@@ -25,38 +25,31 @@ const unsigned int height = 800;
 // Vertices coordinates
 GLfloat vertices[] =
 { //     COORDINATES     /        COLORS      /   TexCoord  //
-	0.0f, 1.0f, 0.0f,                    0.83f, 0.70f, 0.44f,	  0.0f, 0.0f,
-	-0.7236f, 0.44721f, -0.52572f,       0.83f, 0.70f, 0.44f,	  5.0f, 0.0f,
-	 0.27639f, 0.44721f, -0.85064f,      0.83f, 0.70f, 0.44f,	  0.0f, 0.0f,
-	0.89442f, 0.44721f, 0.0f,            0.83f, 0.70f, 0.44f,	  5.0f, 0.0f,
-	 0.0f, 1.0f, 0.0f,                   0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.27639f, 0.44721f, 0.85064f,       0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.0f, 1.0f, 0.0f,                   0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 - 0.7236f, 0.44721f, 0.52572f,      0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.0f, 1.0, 0.0f,                    0.92f, 0.86f, 0.76f,  	  2.5f, 5.0f,
-	 - 0.7236f, 0.44721f, -0.52572f,     0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	- 0.27639f, -0.44721f, -0.85064f,    0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.0f, -1.0f, 0.0f,                  0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 - 0.89442f, -0.44721f, 0.0f,        0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.0f, -1.0f, 0.0f,                  0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 - 0.27639f, -0.44721f, 0.85064f,    0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	0.0f, -1.0f, 0.0f,                   0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.7236f, -0.44721f, 0.52572f,       0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.0f, -1.0f, 0.0f,                  0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.7236f, -0.44721f, -0.52572f,      0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 0.0f, -1.0f, 0.0f,                  0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
-	 - 0.27639f, -0.44721f, -0.85064f,   0.92f, 0.86f, 0.76f,	  2.5f, 5.0f,
+	0, sqrt(6) / 3, sqrt(3)/3, 0.83f, 0.70f, 0.44f,	  0, 1,
+	0.5f, sqrt(6)/3, sqrt(3) * 2.5f/3, 0.83f, 0.70f, 0.44f,	  0, 0.340f,
+   -0.5f, sqrt(6) / 3, sqrt(3) * 2.5f / 3, 0.83f, 0.70f, 0.44f,	  0.243f, 0.662f,
+	0, 0, sqrt(3),0.83f, 0.70f, 0.44f,	  0.244f, 0,//3                          
+   -0.5f, 0, sqrt(3) / 2,0.83f, 0.70f, 0.44f,	  0.5f, 0.34f,//4
+	0, sqrt(6) / 3, sqrt(3) / 3,0.83f, 0.70f, 0.44f,	  0.5f, 1,//5
+    0.5f, 0, sqrt(3) / 2,0.83f, 0.70f, 0.44f,	  0.75f, 0.66f,//6
+	0, 0, sqrt(3),0.83f, 0.70f, 0.44f,	  0.74f, 0,//7
+	0.5f, sqrt(6) / 3, sqrt(3) * 2.5f / 3,0.83f, 0.70f, 0.44f,	  1, 0.334f,//8
+	0, sqrt(6) / 3, sqrt(3) / 3,0.83f, 0.70f, 0.44f,	  1, 1,//9
+
+
 };
 
 // Indices for vertices order
 GLuint indices[] =
 {
-	0, 1, 2,
-	0, 2, 3,
-	0, 1, 4,
-	1, 2, 4,
-	2, 3, 4,
-	3, 0, 4
+	                    0,2,1,
+						1,2,3,
+						2,5,4,
+						4,3,2,
+						5,6,4,
+						6,7,4,
+						6,8,7,
+						6,9,8
 };
 
 
@@ -130,7 +123,7 @@ int main()
 	std::string texPath = "/Resources/YoutubeOpenGL 7 - Going 3D/";
 
 	// Texture
-	Texture brickTex((parentDir + texPath + "brick.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture brickTex((parentDir + texPath + "octa.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	brickTex.texUnit(shaderProgram, "tex0", 0);
 
 	// Original code from the tutorial

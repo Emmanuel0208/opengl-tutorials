@@ -2,7 +2,6 @@
 #include<filesystem>
 namespace fs = std::filesystem;
 //------------------------------
-
 #include"Model.h"
 
 
@@ -60,13 +59,13 @@ int main()
 
 
 
-	
+
 
 	// Enables the Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
 	// Creates camera object
-	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 1.0f));
 
 
 	/*
@@ -76,10 +75,15 @@ int main()
 	* Also note that this requires C++17, so go to Project Properties, C/C++, Language, and select C++17
 	*/
 	std::string parentDir = (fs::current_path().fs::path::parent_path()).string();
-	std::string modelPath = "/Resources/YoutubeOpenGL 13 - Model Loading/models/bunny/scene.gltf";
-	
+	std::string modelPath = "/Resources/YoutubeOpenGL 13 - Model Loading/Sniper.gltf";
+
 	// Load in a model
 	Model model((parentDir + modelPath).c_str());
+
+	std::string texPath = "/Resources/YoutubeOpenGL 13 - Model Loading/SniperBase.png";
+
+	Texture brickTex((parentDir + texPath).c_str(), "", 0);
+	brickTex.texUnit(shaderProgram, "tex0", 0);
 
 	// Original code from the tutorial
 	// Model model("models/bunny/scene.gltf");
@@ -99,6 +103,7 @@ int main()
 
 		// Draw a model
 		model.Draw(shaderProgram, camera);
+		brickTex.Bind();
 
 		// Swap the back buffer with the front buffer
 		glfwSwapBuffers(window);
